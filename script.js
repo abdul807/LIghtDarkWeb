@@ -55,12 +55,26 @@ function lightMode(){
 function changeTheme (event){
     if (event.target.checked) {
         document.documentElement.setAttribute('data-theme','dark')
+        localStorage.setItem('theme','dark')
         Darkmode()
     } else {
         document.documentElement.setAttribute('data-theme','light')
+        localStorage.setItem('theme','light')
         lightMode()
     }
     
 }
 
 switchtoggle.addEventListener('change',changeTheme)
+
+const currentTheme = localStorage.getItem('theme')
+
+if (currentTheme){
+    document.documentElement.setAttribute('data-theme', currentTheme)
+
+    if(currentTheme === 'dark'){
+        switchtoggle.checked = true;
+        Darkmode()
+    }
+
+}
